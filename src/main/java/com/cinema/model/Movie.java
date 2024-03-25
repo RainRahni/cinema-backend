@@ -1,7 +1,5 @@
 package com.cinema.model;
 
-import com.cinema.model.type.MovieGenre;
-import com.cinema.model.type.MovieLanguage;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
 import java.time.LocalTime;
 
 @Entity
@@ -24,9 +21,9 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String duration;
-    private MovieGenre genre;
-    private MovieLanguage language;
+    private double duration;
+    private String genre;
+    private String language;
     private int minimumAge;
     private LocalTime startTime;
 }
