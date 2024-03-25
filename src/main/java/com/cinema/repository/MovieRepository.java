@@ -3,5 +3,8 @@ package com.cinema.repository;
 import com.cinema.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MovieRepository extends JpaRepository<Movie, Long>{
+import java.util.List;
+
+public interface MovieRepository extends JpaRepository<Movie, Long> {
+    List<Movie> findByGenre(String movieGenre);
 }
