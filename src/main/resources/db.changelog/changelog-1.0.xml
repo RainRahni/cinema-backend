@@ -1,0 +1,51 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Rain (generated)" id="1696579105216-1">
+        <createTable tableName="movies">
+            <column autoIncrement="true" name="id" startWith="1" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="movies_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seats" type="Integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minimum_age" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rain (generated)" id="1696579105216-2">
+        <createTable tableName="clients">
+            <column autoIncrement="true" name="id" startWith="1" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="clients_pkey"/>
+            </column>
+            <column name="movie_id" type="INTEGER">
+                <constraints nullable="true"/>
+            </column>
+            <addForeignKeyConstraint baseColumnNames="movie_id" baseTableName='"clients"'
+                                     constraintName="fk_movie_id" deferrable="false"
+                                     referencedColumnNames="id" referencedTableName="movies" validate="true"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

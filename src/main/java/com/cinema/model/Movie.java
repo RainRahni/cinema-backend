@@ -1,15 +1,15 @@
 package com.cinema.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,9 +21,13 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private double duration;
+    private Integer duration;
     private String genre;
     private String language;
-    private int minimumAge;
+    private Integer minimumAge;
     private LocalTime startTime;
+    @ElementCollection
+    private List<Boolean> seats = Collections.nCopies(50, false);
+    @OneToMany(mappedBy = "movie")
+    private List<Client> participants = new ArrayList<>();
 }
