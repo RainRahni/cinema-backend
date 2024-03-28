@@ -20,6 +20,16 @@ public class MovieService{
                                     LocalTime startTime,
                                     String language) {
         List<Movie> allMovies = movieRepository.findAll();
+        System.out.println(allMovies.size());
+        List<Movie> genres = allMovies.stream().filter(movie -> matchesGenre(movie, genre)).collect(Collectors.toList());
+        System.out.println(genres);
+        List<Movie> age = genres.stream().filter(movie -> matchesMinimumAge(movie, minimumAge)).collect(Collectors.toList());
+        System.out.println(age);
+        List<Movie> time = age.stream().filter(movie -> matchesStartTime(movie, startTime)).collect(Collectors.toList());
+        System.out.println(time);
+        List<Movie> langua = time.stream().filter(movie -> matchesLanguage(movie, language)).collect(Collectors.toList());
+        System.out.println(langua);
+        System.out.println(language == null);
         return allMovies.stream()
                 .filter(movie -> matchesGenre(movie, genre))
                 .filter(movie -> matchesMinimumAge(movie, minimumAge))
@@ -29,9 +39,9 @@ public class MovieService{
     }
     private boolean matchesGenre(Movie movie, String genre) {
         return genre == null
-                || movie.getGenre() == null
-                || movie.getGenre().equalsIgnoreCase(genre)
-                || movie.getGenre().isEmpty();
+                || genre.isEmpty()
+                || movie.getGenre().isEmpty()
+                || movie.getGenre().equalsIgnoreCase(genre);
     }
 
     private boolean matchesMinimumAge(Movie movie, Integer minimumAge) {
@@ -49,9 +59,9 @@ public class MovieService{
 
     private boolean matchesLanguage(Movie movie, String language) {
         return language == null
-                || movie.getLanguage() == null
-                || movie.getLanguage().isEmpty()
-                || movie.getLanguage().equalsIgnoreCase(language);
+                || language.isEmpty()
+                || (movie.getLanguage().describeConstable().isPresent()
+                && movie.getLanguage().equalsIgnoreCase(language));
     }    public void createMovie(Movie movie) {
         validateParameters(movie);
         movieRepository.save(movie);
