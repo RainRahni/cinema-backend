@@ -75,4 +75,8 @@ public class MovieService{
             throw new BadRequestException("Invalid parameters");
         }
     }
+
+    public List<Movie> readAllMovies() {
+        return movieRepository.findAll();
+    }
 }

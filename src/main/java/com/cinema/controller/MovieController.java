@@ -20,8 +20,12 @@ public class MovieController {
                                     @RequestParam(required = false) String language) {
         return movieService.filterMovies(genre, minimumAge, startTime, language);
     }
-    @PostMapping("/")
+    @PostMapping
     public void createMovie(@RequestBody Movie movie) {
         movieService.createMovie(movie);
+    }
+    @GetMapping("/all")
+    public List<Movie> readAllMovies() {
+        return movieService.readAllMovies();
     }
 }
