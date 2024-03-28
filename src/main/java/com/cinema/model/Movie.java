@@ -27,7 +27,7 @@ public class Movie {
     private Integer minimumAge;
     private LocalTime startTime;
     @ElementCollection
-    private List<Boolean> seats = Collections.nCopies(50, false);
+    private List<Boolean> seats = Collections.nCopies(88, false);
     @OneToMany(mappedBy = "movie")
     private List<Client> participants = new ArrayList<>();
 }

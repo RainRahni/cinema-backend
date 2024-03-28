@@ -16,11 +16,12 @@ import java.util.Optional;
 public class ClientService {
     private final ClientRepository clientRepository;
     private final MovieRepository movieRepository;
+    private final String NO_SUCH_MOVIE = "No movie with this id!";
     @Transactional
     public void addUserToMovie(Client client, Long movieId, Integer seatNumber) {
         Optional<Movie> movie = movieRepository.findById(movieId);
         if (movie.isEmpty()) {
-            throw new BadRequestException("No movie with this id!");
+            throw new BadRequestException(NO_SUCH_MOVIE);
         }
         Movie present = movie.get();
         present.getSeats().add(seatNumber, true);

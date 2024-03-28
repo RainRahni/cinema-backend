@@ -21,11 +21,19 @@ public class MovieController {
         return movieService.filterMovies(genre, minimumAge, startTime, language);
     }
     @PostMapping
-    public void createMovie(@RequestBody Movie movie) {
-        movieService.createMovie(movie);
+    public void saveMovie(@RequestBody Movie movie) {
+        movieService.saveMovie(movie);
     }
     @GetMapping("/all")
     public List<Movie> readAllMovies() {
         return movieService.readAllMovies();
+    }
+    @GetMapping("/{id}")
+    public Movie readMovie(@PathVariable Long id) {
+        return movieService.readMovie(id);
+    }
+    @GetMapping("/seats/{id}")
+    public Integer readRecommendedSeat(@PathVariable Long id) {
+        return movieService.readRecommendedSeat(id);
     }
 }
