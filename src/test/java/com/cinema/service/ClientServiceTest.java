@@ -4,7 +4,6 @@ import com.cinema.exception.BadRequestException;
 import com.cinema.model.Client;
 import com.cinema.model.Movie;
 import com.cinema.repository.ClientRepository;
-import com.cinema.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,18 +15,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class ClientServiceTest {
     @Mock
     private MovieService movieService;
-    @Mock
-    private MovieRepository movieRepository;
     @Mock
     private ClientRepository clientRepository;
     @InjectMocks
