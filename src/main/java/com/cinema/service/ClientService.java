@@ -14,6 +14,13 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final MovieService movieService;
     private static final String NO_SUCH_SEAT = "Invalid seat number!";
+
+    /**
+     * Add user to database and edit the seats for given movie.
+     * @param client that registered to movie.
+     * @param movieId movie client registered to.
+     * @param seatNumber where client sits.
+     */
     @Transactional
     public void addUserToMovie(Client client, Long movieId, Integer seatNumber) {
         Movie movie = movieService.readMovie(movieId);

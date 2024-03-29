@@ -17,6 +17,15 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private static final String INVALID_PARAMETERS = "Invalid parameters!";
     private static final String NO_SUCH_MOVIE = "No movie with this id!";
+
+    /**
+     * Filter movies based on input parameters.
+     * @param genre specific movie genre.
+     * @param minimumAge specific minimum age required.
+     * @param startTime specific start time of a movie.
+     * @param language specific language movie is in.
+     * @return movies that satisfy filters.
+     */
     public List<Movie> filterMovies(String genre,
                                     Integer minimumAge,
                                     LocalTime startTime,
@@ -55,6 +64,11 @@ public class MovieService {
                 || (movie.getLanguage().describeConstable().isPresent()
                 && movie.getLanguage().equalsIgnoreCase(language));
     }
+
+    /**
+     * Save given movie to database if correct.
+     * @param movie to save to the database.
+     */
     public void saveMovie(Movie movie) {
         validateParameters(movie);
         movieRepository.save(movie);
@@ -69,10 +83,19 @@ public class MovieService {
         }
     }
 
+    /**
+     * Read all movies currently in the database.
+     * @return all movies.
+     */
     public List<Movie> readAllMovies() {
         return movieRepository.findAll();
     }
 
+    /**
+     * Read movie with given id from the database
+     * @param id of the movie.
+     * @return movie with id.
+     */
     public Movie readMovie(Long id) {
         Optional<Movie> movie = movieRepository.findById(id);
         if (movie.isEmpty()) {
