@@ -39,6 +39,7 @@ false representing that this seat has not been taken,
 true representing that his seat has been taken.
 Movie also has list of participants.
 
+I also put app to Docker container and wrote tests for service layer.
 # Challenges and time spent
 
 There really was not anything challenging.
