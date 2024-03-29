@@ -17,6 +17,7 @@ public class ClientService {
     private final ClientRepository clientRepository;
     private final MovieRepository movieRepository;
     private final String NO_SUCH_MOVIE = "No movie with this id!";
+    private final String NO_SUCH_SEAT = "Invalid seat number!";
     @Transactional
     public void addUserToMovie(Client client, Long movieId, Integer seatNumber) {
         Optional<Movie> movie = movieRepository.findById(movieId);
@@ -24,8 +25,12 @@ public class ClientService {
             throw new BadRequestException(NO_SUCH_MOVIE);
         }
         Movie present = movie.get();
-        present.getSeats().add(seatNumber, true);
+        if (seatNumber - 1 < 0) {
+            throw new BadRequestException(NO_SUCH_SEAT);
+        }
+        present.getSeats().add(seatNumber - 1, true);
         present.getParticipants().add(client);
+        client.setMovie(present);
         movieRepository.save(present);
         clientRepository.save(client);
     }

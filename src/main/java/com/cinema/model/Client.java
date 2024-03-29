@@ -1,5 +1,6 @@
 package com.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +19,6 @@ public class Client {
     private String name;
     private String email;
     @ManyToOne
+    @JsonBackReference
     private Movie movie;
 }

@@ -1,5 +1,6 @@
 package com.cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +30,6 @@ public class Movie {
     @ElementCollection
     private List<Boolean> seats = Collections.nCopies(88, false);
     @OneToMany(mappedBy = "movie")
+    @JsonManagedReference
     private List<Client> participants = new ArrayList<>();
 }
