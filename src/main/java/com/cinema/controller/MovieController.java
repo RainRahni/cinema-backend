@@ -32,8 +32,4 @@ public class MovieController {
     public Movie readMovie(@PathVariable Long id) {
         return movieService.readMovie(id);
     }
-    @GetMapping("/seats/{id}")
-    public Integer readRecommendedSeat(@PathVariable Long id) {
-        return movieService.readRecommendedSeat(id);
-    }
 }

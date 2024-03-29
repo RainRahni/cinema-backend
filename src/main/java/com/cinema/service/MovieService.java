@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MovieService{
+public class MovieService {
     private final MovieRepository movieRepository;
     private static final String INVALID_PARAMETERS = "Invalid parameters!";
     private static final String NO_SUCH_MOVIE = "No movie with this id!";
